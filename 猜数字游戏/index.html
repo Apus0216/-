@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>猜数字游戏</title>
+</head>
+<body>
+	<h1>猜数字游戏</h1>
+	<p>我想了一个1到100的数字，你需要猜测它是多少。</p>
+	<input type="text" id="guess" placeholder="请输入你的猜测">
+	<button type="button" onclick="checkGuess()">猜！</button>
+	<p id="message"></p>
+	<script>
+		// 生成随机数
+		var randomNumber = Math.floor(Math.random() * 100) + 1;
+		
+		// 获取输入框和消息元素
+		var guessInput = document.getElementById("guess");
+		var message = document.getElementById("message");
+		
+		// 检查猜测
+		function checkGuess() {
+			// 获取猜测的值
+			var guess = parseInt(guessInput.value);
+			
+			// 判断猜测是否有效
+			if (isNaN(guess) || guess < 1 || guess > 100) {
+				message.innerHTML = "请输入有效的数字！";
+			} else {
+				// 判断猜测是否正确
+				if (guess === randomNumber) {
+					message.innerHTML = "恭喜你，猜对了！";
+				} else if (guess < randomNumber) {
+					message.innerHTML = "猜小了！";
+				} else {
+					message.innerHTML = "猜大了！";
+				}
+			}
+			
+			// 清空输入框
+			guessInput.value = "";
+		}
+	</script>
+</body>
+</html>
